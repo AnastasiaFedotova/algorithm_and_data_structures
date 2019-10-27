@@ -1,31 +1,31 @@
 /*Реализовать бинарный поиск на основе массива чисел / массива книг (по году)*/
-function findByBinary(arr, needful) {
+function findByBinary(iterator, needful, keyFactory) {
     let arrPart = [];
-    let length = Math.round(arr.length / 2);
-    if(needful < arr[length].year) {
-        arrPart = arr.slice(0, length);
-        findByBinary(arrPart, needful);
-    } else if(needful > arr[length].year) {
-        arrPart = arr.slice(length, arr.length);
-        findByBinary(arrPart, needful);
+    let length = Math.round(iterator.length / 2);
+    if(needful < keyFactory(iterator[length])) {
+        arrPart = iterator.slice(0, length);
+        findByBinary(arrPart, needful, keyFactory);
+    } else if(needful > keyFactory(iterator[length])) {
+        arrPart = iterator.slice(length, iterator.length);
+        findByBinary(arrPart, needful, keyFactory);
     }
     else {
-        alert( arr[length].year);
+        alert(keyFactory(iterator[length]));
     }
 }
-findByBinary([
+let books = [
     {
         "id": 2,
-        "title": "Американская трагедия2",
+        "title": "Книга первая",
         "author": "Тeодор Драйзер",
-        "prise": 12,
+        "prise": 27,
         "year": 1903,
         "description": "Действие начинается в городе Канзас-Сити. Клайд Грифитс — сын уличных проповедников, которые строго воспитывают детей в религиозной вере. "
     },
 
     {
         "id": 2,
-        "title": "Американская трагедия2",
+        "title": "Книга вторая",
         "author": "Тeодор Драйзер",
         "prise": 12,
         "year": 1911,
@@ -34,61 +34,61 @@ findByBinary([
 
     {
         "id": 1,
-        "title": "Американская трагедия1",
+        "title": "Книга третяя",
         "author": "Тeодор Драйзер",
-        "prise": 10,
+        "prise": 24,
         "year": 1922,
         "description": "Действие начинается в городе Канзас-Сити. Клайд Грифитс — сын уличных проповедников, которые строго воспитывают детей в религиозной вере. "
     },
 
     {
         "id": 2,
-        "title": "Американская трагедия2",
+        "title": "Книга четвертая",
         "author": "Тeодор Драйзер",
-        "prise": 12,
+        "prise": 16,
         "year": 1928,
         "description": "Действие начинается в городе Канзас-Сити. Клайд Грифитс — сын уличных проповедников, которые строго воспитывают детей в религиозной вере. "
     },
 
     {
         "id": 2,
-        "title": "Американская трагедия2",
+        "title": "Книга пятая",
         "author": "Тeодор Драйзер",
-        "prise": 12,
+        "prise": 3,
         "year": 1933,
         "description": "Действие начинается в городе Канзас-Сити. Клайд Грифитс — сын уличных проповедников, которые строго воспитывают детей в религиозной вере. "
     },
 
     {
         "id": 2,
-        "title": "Американская трагедия2",
+        "title": "Книга шестая",
         "author": "Тeодор Драйзер",
-        "prise": 12,
+        "prise": 7,
         "year": 1937,
         "description": "Действие начинается в городе Канзас-Сити. Клайд Грифитс — сын уличных проповедников, которые строго воспитывают детей в религиозной вере. "
     },
 
     {
         "id": 2,
-        "title": "Американская трагедия2",
+        "title": "Книга седьмая",
         "author": "Тeодор Драйзер",
-        "prise": 12,
+        "prise": 9,
         "year": 1940,
         "description": "Действие начинается в городе Канзас-Сити. Клайд Грифитс — сын уличных проповедников, которые строго воспитывают детей в религиозной вере. "
     },
 
     {
         "id": 3,
-        "title": "Американская трагедия3",
+        "title": "книга восьмая",
         "author": "Тeодор Драйзер",
-        "prise": 14,
+        "prise": 1,
         "year": 1942,
         "description": "Действие начинается в городе Канзас-Сити. Клайд Грифитс — сын уличных проповедников, которые строго воспитывают детей в религиозной вере. "
     },
 
     {
         "id": 3,
-        "title": "Американская трагедия3",
+        "title": "книга девятая",
         "author": "Тeодор Драйзер",
         "prise": 14,
         "year": 1948,
@@ -97,10 +97,15 @@ findByBinary([
 
     {
         "id": 4,
-        "title": "Американская трагедия4",
+        "title": "книга десятая",
         "author": "Тeодор Драйзер",
-        "prise": 13,
+        "prise": 2,
         "year": 1989,
         "description": "Действие начинается в городе Канзас-Сити. Клайд Грифитс — сын уличных проповедников, которые строго воспитывают детей в религиозной вере. "
     }
-], 1911)
+];
+findByBinary(books.sort((a,b)=> {
+    if(a.prise > b.prise) return 1;
+    if(a.prise < b.prise) return -1;
+    return 0;
+}), 3, obj => obj.prise)// 3 прохода, верно

@@ -1,15 +1,29 @@
 /*Реализовать связанный список*/
+class Item {
+    constructor(value, link) {
+        this.value = value;
+        let link = link;
+    }
+}
+
+
 class LinkedList {
     constructor() {
-        this.obj = {}
-        let index = 0;
+        let end = null;
+        let start = null;
+        getLink(end, start);
     }
-    get generationObj() {
-       Object.defineProperty(this.obj, 'index');
-
+    get getLink() {
+        link;
     }
-    set generationObj() {
-        index += 1; 
+    set getLink(end, start) {
+        if(!start) {
+            link = new Item;
+            start = link;
+            return link;
+        } else if(end == start) {
+            
+        } 
     }
 }
 

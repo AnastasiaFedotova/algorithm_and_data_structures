@@ -2,29 +2,29 @@
 class Item {
     constructor(value, link) {
         this.value = value;
-        let link = link;
+        this.link = link;
     }
 }
 
 
 class LinkedList {
     constructor() {
-        let end = null;
-        let start = null;
-        getLink(end, start);
+        this.end = null;
+        this.start = null;
     }
-    get getLink() {
-        link;
-    }
-    set getLink(end, start) {
-        if(!start) {
-            link = new Item;
-            start = link;
-            return link;
-        } else if(end == start) {
-            
+    getLink() {
+        if(!this.start) {
+            this.end = new Item;
+            this.start =  this.end;
+            return this.end;
         } 
+        this.end = new Item;
+        return this.end;
+    }
+    add(value) {
+        return new Item(value, getLink());
     }
 }
 
-let list = new LinkedList().generationObj;
+let list = new LinkedList();
+list.add(4444);

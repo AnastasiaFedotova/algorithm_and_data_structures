@@ -1,4 +1,4 @@
-//применение рекурсии в подсчете суммы всех чисел массива
+﻿//применение рекурсии в подсчете суммы всех чисел массива
 function summ(arr, index = 0) {
     if(arr.length < 2) return arr[index] || false;
     if(arr.length - 1 != index) {

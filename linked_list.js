@@ -1,11 +1,10 @@
-/*Реализовать связанный список*/
+﻿/*Реализовать связанный список*/
 class Item {
     constructor(value, next) {
         this.value = value;
         this.next = next;
     }
 }
-
 
 class LinkedList {
     constructor() {

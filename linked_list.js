@@ -33,14 +33,18 @@ class LinkedList {
     }
 
     remove(index) {
-        if(this.get(index) == this.end) {
-            this.end == this.get(index - 1);
-        } else if(this.get(index) == this.start) {
-            this.start = this.get(index + 1);
-        } else if(this.get(index)) {
-            this.get(index - 1).next = this.get(index).next;
+        if(index < 0 || !isFinite(index) || index == undefined) return;
+        let item = this.start;
+        let itemBack;
+        for(let i = 0; i < index; i++) {
+            if(item.next == null) return;
+            itemBack = item;
+            item = item.next;
         }
-    }
+        itemBack.next = item.next;
+        return itemBack;
+
+   }
 }
 
 let list = new LinkedList();
